@@ -45,14 +45,19 @@ export default function Home() {
       {error && <p>{error}</p>}
       <ul className="divide-y divide-gray-300 w-full max-w-2xl">
         {articles.map((article) => (
-          <li key={article.id} className="p-2">
+          <li
+            key={article.id}
+            className="p-2 hover:bg-gray-100 transition delay-50"
+          >
             <Link
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col gap-1"
             >
-              <h2 className="text-sm md:text-base">{article.title}</h2>
+              <h2 className="text-sm md:text-base font-semibold text-gray-800">
+                {article.title}
+              </h2>
               <p className="text-xs md:text-sm text-gray-400 line-clamp-2">
                 {article.description}
               </p>
