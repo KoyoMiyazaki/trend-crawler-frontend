@@ -53,6 +53,9 @@ export default function Home() {
               className="flex flex-col gap-1"
             >
               <h2 className="text-sm md:text-base">{article.title}</h2>
+              <p className="text-xs md:text-sm text-gray-400 line-clamp-2">
+                {article.description}
+              </p>
               <p className="text-xs md:text-sm text-gray-400">
                 🕒 {new Date(article.published_at).toLocaleDateString()}
               </p>
