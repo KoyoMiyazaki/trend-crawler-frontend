@@ -1,6 +1,7 @@
 "use client";
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { sources } from "@/lib/sources";
 import { supabase } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,13 +20,11 @@ type Article = {
 export default function Home() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const tabs = ["すべて", "Zenn", "Qiita"];
+  const tabs = [
+    "すべて",
+    ...Object.values(sources).map((source) => source.label),
+  ];
   const [selectedTab, setSelectedTab] = useState("すべて");
-
-  const sourceLogos: { [key: string]: string } = {
-    zenn: "/logos/zenn.svg",
-    qiita: "/logos/qiita.png",
-  };
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -86,7 +85,7 @@ export default function Home() {
               >
                 <div className="flex items-start gap-2">
                   <Image
-                    src={sourceLogos[article.source]}
+                    src={sources[article.source as keyof typeof sources].logo}
                     alt={article.source}
                     width={20}
                     height={20}
