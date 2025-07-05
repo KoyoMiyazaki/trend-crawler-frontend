@@ -2,6 +2,7 @@
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/lib/supabase";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -20,6 +21,11 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const tabs = ["すべて", "Zenn", "Qiita"];
   const [selectedTab, setSelectedTab] = useState("すべて");
+
+  const sourceLogos: { [key: string]: string } = {
+    zenn: "/logos/zenn.svg",
+    qiita: "/logos/qiita.png",
+  };
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -44,7 +50,7 @@ export default function Home() {
 
   return (
     <main className="container mx-auto py-8 px-2 flex flex-col items-center gap-4">
-      <h1 className="text-2xl font-bold">📚️トレンド記事</h1>
+      <h1 className="text-2xl font-bold text-gray-800">📚️トレンド記事</h1>
 
       <Tabs defaultValue="すべて">
         <TabsList>
@@ -78,10 +84,19 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="flex flex-col gap-1"
               >
-                <h2 className="text-sm md:text-base font-semibold text-gray-800">
-                  {article.title}
-                </h2>
-                <p className="text-xs md:text-sm text-gray-400 line-clamp-2">
+                <div className="flex items-start gap-2">
+                  <Image
+                    src={sourceLogos[article.source]}
+                    alt={article.source}
+                    width={20}
+                    height={20}
+                    className="mt-1"
+                  />
+                  <h2 className="text-sm md:text-base font-semibold text-gray-800">
+                    {article.title}
+                  </h2>
+                </div>
+                <p className="text-xs md:text-sm text-gray-500 line-clamp-2">
                   {article.description}
                 </p>
                 <p className="text-xs md:text-sm text-gray-400">
