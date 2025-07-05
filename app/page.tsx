@@ -11,7 +11,7 @@ type Article = {
   description: string;
   source: string;
   published_at: string;
-  fetch_at: string;
+  fetched_at: string;
 };
 
 export default function Home() {
