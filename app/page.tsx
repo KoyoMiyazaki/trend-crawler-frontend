@@ -65,7 +65,7 @@ export default function Home() {
         </TabsList>
       </Tabs>
 
-      {error && <p>{error}</p>}
+      {error && <p className="text-red-600">{error}</p>}
       <ul className="divide-y divide-gray-300 w-full max-w-2xl">
         {articles
           .filter((article) => {
