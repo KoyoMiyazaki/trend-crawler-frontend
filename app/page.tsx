@@ -58,7 +58,10 @@ export default function Home() {
               <TabsTrigger
                 key={tab}
                 value={tab}
-                onClick={() => setSelectedTab(tab)}
+                onClick={() => {
+                  setSelectedTab(tab);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
               >
                 {tab}
               </TabsTrigger>
