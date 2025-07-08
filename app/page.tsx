@@ -48,22 +48,24 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="container mx-auto py-8 px-2 flex flex-col items-center gap-4">
-      <h1 className="text-2xl font-bold text-gray-800">📚️トレンド記事</h1>
+    <main className="container mx-auto p-2 flex flex-col items-center gap-4">
+      <div className="sticky top-0 flex flex-col gap-2 items-center justify-between w-full bg-white py-4">
+        <h1 className="text-2xl font-bold text-gray-800">📚️トレンド記事</h1>
 
-      <Tabs defaultValue="すべて">
-        <TabsList>
-          {tabs.map((tab) => (
-            <TabsTrigger
-              key={tab}
-              value={tab}
-              onClick={() => setSelectedTab(tab)}
-            >
-              {tab}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
+        <Tabs defaultValue="すべて">
+          <TabsList>
+            {tabs.map((tab) => (
+              <TabsTrigger
+                key={tab}
+                value={tab}
+                onClick={() => setSelectedTab(tab)}
+              >
+                {tab}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+      </div>
 
       {error && <p className="text-red-600">{error}</p>}
       <ul className="divide-y divide-gray-300 w-full max-w-2xl">
